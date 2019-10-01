@@ -1,0 +1,39 @@
+{
+	"name": "canvas-csv-matcher",
+	"version": "1.0.0",
+	"description": "An intelligent auto-matching system that automatically identifies users in rows.",
+	"main": "index.js",
+	"scripts": {
+		"test": "mocha --exit --recursive --reporter spec"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gabeabrams/canvas-csv-matcher.git"
+	},
+	"keywords": [
+		"Canvas",
+		"CSV",
+		"User",
+		"Student",
+		"Match",
+		"Matching"
+	],
+	"author": "Gabriel Abrams <gabeabrams@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/gabeabrams/canvas-csv-matcher/issues"
+	},
+	"homepage": "https://github.com/gabeabrams/canvas-csv-matcher#readme",
+	"devDependencies": {
+		"caccl-api": "^1.0.42",
+		"eslint": "^6.4.0",
+		"eslint-config-airbnb": "^18.0.1",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.14.3",
+		"mocha": "^6.2.1"
+	},
+	"dependencies": {
+		"papaparse": "^5.1.0"
+	}
+}
