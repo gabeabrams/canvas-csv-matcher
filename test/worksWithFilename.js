@@ -32,6 +32,6 @@ describe('Canvas CSV Matcher', function () {
       teachingTeamMembers,
       studentOnlyOnce: true,
     });
-    console.log('results', results.csv.colTypes);
+    console.log('results', results.unmatchedRows[0]);
   });
 });

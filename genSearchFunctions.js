@@ -16,7 +16,12 @@ module.exports = (users) => {
     // Create bag of words for this user
     const bagOfWords = new Set([]);
     Object.values(user).forEach((cell) => {
-      const words = String(cell).toLowerCase().trim().split(' ');
+      const words = (
+        String(cell)
+          .toLowerCase()
+          .trim()
+          .split(' ')
+      );
       words.forEach((word) => {
         // Skip empty words
         if (word.length === 0) {
@@ -54,7 +59,7 @@ module.exports = (users) => {
      *   calculation
      * @return {object[]} confidence rating array of form { confidence, user }
      */
-    getConfidenceRatings: (row, usersToExclude=[]) => {
+    getConfidenceRatings: (row, usersToExclude = []) => {
       // Confidence rating = percent of words in the bag of words that are also
       // in the row
 
@@ -67,7 +72,12 @@ module.exports = (users) => {
       // Create a bag of words from the row
       const wordInRow = {}; // word => true if the word is in the row
       row.forEach((cell) => {
-        const words = cell.trim().toLowerCase().split(' ');
+        const words = (
+          cell
+            .trim()
+            .toLowerCase()
+            .split(' ')
+        );
         words.forEach((word) => {
           // Skip empty words
           if (word.length === 0) {
@@ -92,7 +102,7 @@ module.exports = (users) => {
             numMatching += 1;
           }
         });
-        const confidence = Math.round(numMatching / bagOfWords.size * 100);
+        const confidence = Math.round((numMatching / bagOfWords.size) * 100);
 
         return {
           user,
