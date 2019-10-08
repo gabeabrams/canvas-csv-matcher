@@ -22,6 +22,8 @@ const results =  matchCSV({ /* see arguments below */ });
 | teachingTeamMembers | CanvasUser[] | List of Canvas teaching team member objects to match with. Must be included if you want to match teaching team members | []
 | studentOnlyOnce | boolean | If true, each student can only appear once in the CSV. If a student appears more than once, all rows with the student are disqualified from matching | false |
 | teachingTeamMemberOnlyOnce | boolean | If true, each teaching team member can only appear once in the CSV. If a teaching team member appears more than once, all rows with the teaching team member are disqualified from matching | false |
+| numStudentsPerRow | string or number | The number of students to expect per row, or "any" for any number of students, or "at-least-one" for at least one student per row, or leave out to auto detect the number of students per row based on the average number of students per row | auto detect
+| numTeachingTeamMembersPerRow | string or number | The number of teaching team members to expect per row, or "any" for any number of teaching team members, or "at-least-one" for at least one teaching team member per row, or leave out to auto detect the number of teaching team members per row based on the average number of per row | auto detect
 
 ## Results
 
@@ -29,6 +31,7 @@ Upon successful run, an object is returned:
 
 ```js
 const {
+  colTypes,
   dataHeaders,
   matchedRows,
   unmatchedRows,
@@ -37,6 +40,26 @@ const {
 ```
 
 See descriptions of each property below:
+
+### colTypes `object[]` – the auto-detected type of each column
+
+For each item in the `colTypes` array, the index of the item indicates the index of the column, and the item itself contains the following properties:
+
+```js
+colTypes[i] = {
+    type: "data" or "student" or "teaching team member",
+    property: see below,
+};
+```
+
+The `property` field is `null` if the column is a data column. Otherwise, it can take on the following values:
+
+- "canvas-id": this column contains users' Canvas ID column
+- "name": this column contains users' full name
+- "sortable-name": this column contains users' sortable name (last, first)
+- "university-id": this column contains users' sis user id
+- "login-id": this column contains the id users log into Canvas with
+- "email": this column contains users' emails
 
 ### dataHeaders `string[]` – headers for the data columns
 
@@ -76,18 +99,38 @@ rows[i] = {
 
 ### unmatchedRows `object[]` – the list of rows that could not be matched
 
-// TODO: finish describing
+When a row cannot be matched as expected (it breaks a "only once" rule or doesn't contain the expected number of users), we call it "unmatched" and add it to an array called "unmatchedRows" where each element looks like:
 
-        rawRow,
-        dataColumns,
-        potentialStudents,
-        potentialTeachingTeamMembers,
-
-### colTypes `object[]` – an array of the auto-determined column types
+```js
+unmatchedRows[i] = {
+    rawRow, // A string[] of cells of the original csv row
+    dataColumns, // A string[] of the cells only in the data columns
+    errors, // A string[] list of error messages that describe why the row was not matched
+    potentialStudents: [ // A list of students that could potentially be matched to this row
+        {
+            user, // The potential student object
+            confidence, // A rating 0 to 100 of our NLP-generated confidence that this user should be matched to this row
+        },
+        ...
+    ],
+    potentialTeachingTeamMembers: [ // A list of teaching team members that could potentially be matched to this row
+        {
+            user, // The potential teaching team member object
+            confidence, // A rating 0 to 100 of our NLP-generated confidence that this user should be matched to this row
+        },
+        ...
+    ],
+    
+};
+```
 
 ### csv `object` – the CSV file that was processed
 
-// TODO: finish describing
+This is the original CSV that was matched. The object has the following structure:
 
-        headers,
-        rows,
+```js
+csv = {
+    headers, // A string[] list of headers
+    rows, // A string[][] array of rows, where each row is a list of cell strings
+};
+```

@@ -343,12 +343,12 @@ module.exports = (opts) => {
   rowMatches.forEach((rowMatch, i) => {
     // Figure out if this row is disqualified (one of its matches is
     // disqualified)
-    let unmatchedErrors = [];
-    const disqualified = [
+    const unmatchedErrors = [];
+    [
       rowMatch.students,
       rowMatch.teachingTeamMembers,
-    ].some((users) => {
-      return users.some((user) => {
+    ].forEach((users) => {
+      return users.forEach((user) => {
         const message = isDisqualified[user.canvasId];
         if (message) {
           unmatchedErrors.push(message);
