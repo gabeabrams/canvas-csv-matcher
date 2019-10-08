@@ -392,6 +392,7 @@ module.exports = (opts) => {
         rawRow,
         dataColumns,
         errors: unmatchedErrors,
+        rowIndex: i,
       });
     } else {
       // Handle matched row
@@ -400,6 +401,7 @@ module.exports = (opts) => {
         dataColumns,
         students: rowMatch.students,
         teachingTeamMembers: rowMatch.teachingTeamMembers,
+        rowIndex: i,
       });
     }
   });

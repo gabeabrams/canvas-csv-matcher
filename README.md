@@ -94,6 +94,7 @@ rows[i] = {
     teachingTeamMembers, // The list of teaching team members matched to the row
     rawRow, // The raw data of the row (array of cell strings)
     dataColumns, // The raw data of the data columns (the same cols as those in dataHeaders
+    rowIndex, // The index of the row as it was in the CSV
 };
 ```
 
@@ -104,6 +105,7 @@ When a row cannot be matched as expected (it breaks a "only once" rule or doesn'
 ```js
 unmatchedRows[i] = {
     rawRow, // A string[] of cells of the original csv row
+    rowIndex, // The index of the row as it was in the CSV
     dataColumns, // A string[] of the cells only in the data columns
     errors, // A string[] list of error messages that describe why the row was not matched
     potentialStudents: [ // A list of students that could potentially be matched to this row
@@ -120,7 +122,6 @@ unmatchedRows[i] = {
         },
         ...
     ],
-    
 };
 ```
 
