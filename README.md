@@ -33,6 +33,8 @@ Upon successful run, an object is returned:
 const {
   colTypes,
   dataHeaders,
+  numStudentsPerRow,
+  numTeachingTeamMembersPerRow,
   matchedRows,
   unmatchedRows,
   rawCSV,
@@ -83,6 +85,18 @@ Example:
 > ```js
 > ['Grade', 'Timestamp']
 > ```
+
+### numStudentsPerRow `string|number` – the final number of students per row used in detection
+
+This value is equal the the value passed in unless `numStudentsPerRow` was excluded, at which point it was auto-detected. The caller can figure out the final `numStudentsPerRow` that were used in matching by checking this value.
+
+It will either be a number or it will be "any" or "at-least-one".
+
+### numTeachingTeamMembersPerRow `string|number` – the final number of teaching team members per row used in detection
+
+This value is equal the the value passed in unless `numTeachingTeamMembersPerRow` was excluded, at which point it was auto-detected. The caller can figure out the final `numTeachingTeamMembersPerRow` that were used in matching by checking this value.
+
+It will either be a number or it will be "any" or "at-least-one".
 
 ### matchedRows `object[]` – the list of rows that were automatically matched
 

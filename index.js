@@ -532,6 +532,8 @@ module.exports = (opts) => {
   return {
     colTypes,
     dataHeaders,
+    numStudentsPerRow,
+    numTeachingTeamMembersPerRow,
     matchedRows: matchedRowsWithFullUsers,
     unmatchedRows: unmatchedRowsWithFullUsers,
     csv: {
