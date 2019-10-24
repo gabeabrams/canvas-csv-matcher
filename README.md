@@ -37,7 +37,7 @@ const {
   numTeachingTeamMembersPerRow,
   matchedRows,
   unmatchedRows,
-  rawCSV,
+  csv,
 } = matchCSV({ /* config here */ });
 ```
 
@@ -139,12 +139,12 @@ unmatchedRows[i] = {
 };
 ```
 
-### rawCSV `object` – the CSV file that was processed
+### csv `object` – the CSV file that was processed
 
 This is the original CSV that was matched. The object has the following structure:
 
 ```js
-rawCSV = {
+csv = {
     headers, // A string[] list of headers
     rows, // A string[][] array of rows, where each row is a list of cell strings
 };
