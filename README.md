@@ -139,12 +139,12 @@ unmatchedRows[i] = {
 };
 ```
 
-### csv `object` – the CSV file that was processed
+### rawCSV `object` – the CSV file that was processed
 
 This is the original CSV that was matched. The object has the following structure:
 
 ```js
-csv = {
+rawCSV = {
     headers, // A string[] list of headers
     rows, // A string[][] array of rows, where each row is a list of cell strings
 };
