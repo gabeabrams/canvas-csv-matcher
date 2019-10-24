@@ -43,7 +43,7 @@ const genNumPerRowErrorMessage = (type, expected, actual) => {
   return (
     (expected === actual)
       ? null // No error
-      : `There should be ${expected} ${type}${expected === 1 ? '' : 's'} in this row but instead, but we found ${actual}.`
+      : `There should be ${expected} ${type}${expected === 1 ? '' : 's'} in this row but we found ${actual} instead.`
   );
 };
 
