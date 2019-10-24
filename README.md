@@ -121,7 +121,7 @@ unmatchedRows[i] = {
     rawRow, // A string[] of cells of the original csv row
     rowIndex, // The index of the row as it was in the CSV
     dataColumns, // A string[] of the cells only in the data columns
-    errors, // A string[] list of error messages that describe why the row was not matched
+    errors, // A string description of why the row couldn't be matched
     potentialStudents: [ // A list of students that could potentially be matched to this row
         {
             user, // The potential student object

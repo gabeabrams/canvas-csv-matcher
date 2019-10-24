@@ -43,7 +43,7 @@ const genNumPerRowErrorMessage = (type, expected, actual) => {
   return (
     (expected === actual)
       ? null // No error
-      : `There should be ${expected} ${type}${expected === 1 ? '' : 's'} in this row but instead, but we found ${actual} instead.`
+      : `There should be ${expected} ${type}${expected === 1 ? '' : 's'} in this row but instead, but we found ${actual}.`
   );
 };
 
@@ -386,12 +386,24 @@ module.exports = (opts) => {
       return isDataColumn;
     });
 
+    // Turn errors list into one string
+    const errors = (
+      unmatchedErrors
+        .map((unmatchedError, errorIndex) => {
+          if (errorIndex > 0) {
+            return ` Also, ${unmatchedError.charAt(0).toLowerCase()}${unmatchedError.substring(1)}`;
+          }
+          return unmatchedError;
+        })
+        .join('')
+    );
+
     // Handle unmatched row
     if (isUnmatched) {
       unmatchedRows.push({
         rawRow,
         dataColumns,
-        errors: unmatchedErrors,
+        errors,
         rowIndex: i,
       });
     } else {
