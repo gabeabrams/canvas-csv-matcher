@@ -172,8 +172,8 @@ module.exports = (opts) => {
           }
         });
 
-        // Calculate the minimum number to match (at least 40%)
-        const minToMatch = Math.floor(numNonempty * 0.4);
+        // Calculate the minimum number to match (at least 60%, min 1)
+        const minToMatch = Math.min(1, Math.floor(numNonempty * 0.6));
 
         // Save the data
         typeData.push({
