@@ -43,12 +43,18 @@ module.exports = (users) => {
      *   more than one match found
      */
     getMatch: (prop, cell) => {
+      const fixedCell = (
+        String(cell)
+          .trim()
+          .toLowerCase()
+      );
+
       // Use propToCellToUser to look up
-      if (!propToCellToUser[prop] || !propToCellToUser[prop][cell]) {
+      if (!propToCellToUser[prop] || !propToCellToUser[prop][fixedCell]) {
         return null;
       }
 
-      return propToCellToUser[prop][cell];
+      return propToCellToUser[prop][fixedCell];
     },
 
     /**
