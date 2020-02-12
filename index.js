@@ -173,7 +173,7 @@ module.exports = (opts) => {
         });
 
         // Calculate the minimum number to match (at least 60%, min 1)
-        const minToMatch = Math.min(1, Math.floor(numNonempty * 0.6));
+        const minToMatch = Math.max(1, Math.floor(numNonempty * 0.6));
 
         // Save the data
         typeData.push({
