@@ -22,7 +22,16 @@ module.exports = (oldCSV) => {
     // Yes, we need to pre-process
 
     // Check for file reading
-    if (!csv.includes(',')) {
+    if (
+      !csv.includes(',')
+      && !csv.includes('\n')
+      && (
+        csv
+          .trim()
+          .toLowerCase()
+          .endsWith('.csv')
+      )
+    ) {
       // CSV must be a filename
       const filename = csv;
 
