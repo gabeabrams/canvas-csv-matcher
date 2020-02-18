@@ -40,7 +40,10 @@ module.exports = (oldCSV) => {
     }
 
     // Parse the file
-    const { data, errors } = Papa.parse(csv, { header: false });
+    const { data, errors } = Papa.parse(csv, {
+      header: false,
+      delimiter: ',',
+    });
 
     // Detect CSV parsing errors
     if (errors && errors.length > 0) {
