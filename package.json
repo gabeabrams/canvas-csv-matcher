@@ -1,6 +1,6 @@
 {
 	"name": "canvas-csv-matcher",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"description": "An intelligent auto-matching system that automatically identifies users in rows.",
 	"main": "index.js",
 	"scripts": {
