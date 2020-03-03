@@ -37,13 +37,13 @@ const genNumPerRowErrorMessage = (type, expected, actual) => {
     return (
       (actual && actual > 0)
         ? null // No error
-        : `There should be at least one ${type} in this row but we couldn't find any.`
+        : `We need at least one ${type} matched to this row but no ${type}s matched. Maybe this row's data is different from info in the Canvas roster.`
     );
   }
   return (
     (expected === actual)
       ? null // No error
-      : `There should be ${expected} ${type}${expected === 1 ? '' : 's'} in this row but we found ${actual} instead.`
+      : `We need ${expected} ${type}${expected === 1 ? '' : 's'} matched to this row but ${actual} matched instead. Maybe this row's data is different from info in the Canvas roster.`
   );
 };
 
